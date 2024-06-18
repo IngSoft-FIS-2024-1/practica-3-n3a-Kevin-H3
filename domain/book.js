@@ -73,10 +73,8 @@ export class Book {
 
   wordsPerPage() {
     let palabrasPorHoja;
-    if (this.Pages === 0) {
-      return 0;
-    }
-    palabrasPorHoja = this.#pages / this.#words;
+    
+    palabrasPorHoja = this.#words / this.#pages ;
     return palabrasPorHoja;
   }
 
