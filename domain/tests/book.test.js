@@ -1,11 +1,11 @@
-import {describe, it, expect, beforeEach} from '@jest/globals';
+import { describe, it, expect, beforeEach } from '@jest/globals';
 import Book from '../book.js';
 
 describe('Book', () => {
   let myBook;
 
   beforeEach(() => {
-    myBook = new Book('Cuentos de la Selva', 'Horacio Quiroga', 350);
+    myBook = new Book('Cuentos de la Selva', 'Horacio Quiroga', 350, 8000);
   });
 
   it('return the correct title', () => {
@@ -29,7 +29,7 @@ describe('Book', () => {
   });
 
   it('check author is a string', () => {
-    // TODO
+    expect(() => myBook = new Book(451, 1, 350)).toThrow();
   });
 
   it('check page param is a number', () => {
@@ -41,6 +41,13 @@ describe('Book', () => {
   });
   it('toString()', () => {
     // TODO
+  });
+  it('letras por pagina()', () => {
+    const libro1 = new Book('avatar', 'pepe',
+      '100', '8000');
+    const cantPaginas = libro1.wordsPerPage();
+    const expectedNumber = 80;
+    expect(cantPaginas).toBe(expectedNumber);
   });
 
 });

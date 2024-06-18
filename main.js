@@ -6,12 +6,17 @@ const btnAdd = document.getElementById('btn-add');
 const inpTitle = document.getElementById('inp-title');
 const inpAuthor = document.getElementById('inp-author');
 const inpPages = document.getElementById('inp-pages');
+const inpPalabrasTotales = document.getElementById('inp-palabras-totales');
+const inpWords = document.getElementById('inp-words');
 
 const myLibrary = new Library('Papiros');
 libraryName.innerHTML = myLibrary.getName();
 
 function updateTotalBooks() {
   inpTotalBooks.value = myLibrary.totalBooks();
+}
+function updatePalabrasTotales() {
+  inpPalabrasTotales.value = myLibrary.totalWords();
 }
 
 function updateInventory() {
@@ -33,11 +38,12 @@ btnAdd.addEventListener('click', () => {
   const bookErrorContainer = document.getElementById('add-book-error');
   const bookError = document.getElementById('add-book-error-msg');
   try {
-    myLibrary.addBook(inpTitle.value, inpAuthor.value, parseInt(inpPages.value));
+    myLibrary.addBook(inpTitle.value, inpAuthor.value, parseInt(inpPages.value), parseInt(inpWords.value));
     clearInputs();
     bookErrorContainer.classList.add('d-none');
     updateInventory();
     updateTotalBooks();
+    updatePalabrasTotales();
   }
   catch (error) {
     bookErrorContainer.classList.remove('d-none');
@@ -49,6 +55,8 @@ function clearInputs() {
   inpTitle.value = '';
   inpAuthor.value = '';
   inpPages.value = '';
+  inpWords.value = '';
 }
 
 updateTotalBooks();
+updatePalabrasTotales();
